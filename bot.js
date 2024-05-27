@@ -19,11 +19,13 @@ bot.onText(/\/getdata/, async (msg) => {
       // Скачивание файла
       const response = await axios.get(fileUrl, { responseType: 'arraybuffer' });
       const buffer = Buffer.from(response.data, 'binary');
+      console.log('Файл успешно скачан.');
   
       // Чтение файла
       const workbook = xlsx.read(buffer, { type: 'buffer' });
       const sheetName = workbook.SheetNames[0]; // Выберите лист по умолчанию
       const sheet = workbook.Sheets[sheetName];
+      console.log('Файл успешно прочитан.');
   
       // Преобразование данных в JSON
       const data = xlsx.utils.sheet_to_json(sheet);
@@ -34,7 +36,7 @@ bot.onText(/\/getdata/, async (msg) => {
   
       bot.sendMessage(chatId, message);
     } catch (error) {
-      console.error('Ошибка при получении данных из файла:', error);
+      console.log('Ошибка при получении данных из файла:', error);
       bot.sendMessage(chatId, 'Произошла ошибка при получении данных из файла.');
     }
   });
