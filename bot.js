@@ -28,12 +28,13 @@ bot.onText(/\/getdata/, async (msg) => {
         console.log('Файл успешно прочитан.');
   
       // Преобразование данных в JSON
-        const data = xlsx.utils.sheet_to_json(sheet/*, { defval: '' }*/);
+        const data = xlsx.utils.sheet_to_json(sheet, { defval: '' });
         let message = 'Данные из Excel файла:\n';
-        data.forEach((row, index) => {
-        if (index > 0 && Object.values(row).some(value => value !== '')) {
-            const rowData = Object.values(row).filter(value => value !== '').join(' ');
-            message += `Строка ${index + 1}: ${rowData}\n`;
+        data.slice(1).forEach((row, index) => {
+        //if (index > 0 && Object.values(row).some(value => value !== '')) {
+        const rowData = Object.values(row).filter(value => value !== '').join(' ');
+        if (rowData.trim() !== '') {
+            message += `Строка ${index + 2}: ${rowData}\n`;
             }
         });
   
