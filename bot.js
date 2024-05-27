@@ -13,7 +13,7 @@ bot.onText(/\/start/, (msg) => {
 
 bot.onText(/\/getdata/, async (msg) => {
     const chatId = msg.chat.id;
-    const fileUrl = 'https://docs.google.com/spreadsheets/d/10GIoToM8KrHlGI96cIA0cjXF1DFnTxv5sZ-MgOd518U/edit?usp=sharing'; // Вставьте ссылку на ваш Excel файл
+    const fileUrl = 'https://docs.google.com/spreadsheets/d/1wyBwAm3ZQJOFZd5JNXb0PeGDMWznMT2Y/edit?usp=sharing&ouid=104967868883938205514&rtpof=true&sd=truehttps://docs.google.com/spreadsheets/d/1wyBwAm3ZQJOFZd5JNXb0PeGDMWznMT2Y/edit?usp=sharing&ouid=104967868883938205514&rtpof=true&sd=true'; // Вставьте ссылку на ваш Excel файл
   
     try {
       // Скачивание файла
