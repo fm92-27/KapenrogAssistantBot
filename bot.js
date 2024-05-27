@@ -28,7 +28,7 @@ bot.onText(/\/getdata/, async (msg) => {
         console.log('Файл успешно прочитан.');
   
       // Преобразование данных в JSON
-        const data = xlsx.utils.sheet_to_json(sheet, { defval: '' });
+        //const data = xlsx.utils.sheet_to_json(sheet, { defval: '' });
         let message = 'Данные из Excel файла:\n';
         data.forEach((row, index) => {
         if (index > 0 && Object.values(row).some(value => value !== '')) {
