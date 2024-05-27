@@ -17,27 +17,30 @@ bot.onText(/\/getdata/, async (msg) => {
   
     try {
       // Скачивание файла
-      const response = await axios.get(fileUrl, { responseType: 'arraybuffer' });
-      const buffer = Buffer.from(response.data, 'binary');
-      console.log('Файл успешно скачан.');
+        const response = await axios.get(fileUrl, { responseType: 'arraybuffer' });
+        const buffer = Buffer.from(response.data, 'binary');
+        console.log('Файл успешно скачан.');
   
       // Чтение файла
-      const workbook = xlsx.read(buffer, { type: 'buffer' });
-      const sheetName = workbook.SheetNames[0]; // Выберите лист по умолчанию
-      const sheet = workbook.Sheets[sheetName];
-      console.log('Файл успешно прочитан.');
+        const workbook = xlsx.read(buffer, { type: 'buffer' });
+        const sheetName = workbook.SheetNames[0]; // Выберите лист по умолчанию
+        const sheet = workbook.Sheets[sheetName];
+        console.log('Файл успешно прочитан.');
   
       // Преобразование данных в JSON
-      const data = xlsx.utils.sheet_to_json(sheet);
-      let message = 'Данные из Excel файла:\n';
-      data.forEach((row, index) => {
-        message += `Строка ${index + 1}: ${JSON.stringify(row)}\n`;
-      });
+        const data = xlsx.utils.sheet_to_json(sheet, { defval: '' });
+        let message = 'Данные из Excel файла:\n';
+        data.forEach((row, index) => {
+        if (index > 0 && Object.values(row).some(value => value !== '')) {
+            const rowData = Object.values(row).filter(value => value !== '').join(' ');
+            message += `Строка ${index + 1}: ${rowData}\n`;
+            }
+        });
   
-      bot.sendMessage(chatId, message);
+        bot.sendMessage(chatId, message);
     } catch (error) {
-      console.log('Ошибка при получении данных из файла:', error);
-      bot.sendMessage(chatId, 'Произошла ошибка при получении данных из файла.');
+        console.log('Ошибка при получении данных из файла:', error);
+        bot.sendMessage(chatId, 'Произошла ошибка при получении данных из файла.');
     }
   });
 
