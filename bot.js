@@ -27,11 +27,12 @@ bot.onText(/\/getdata/, async (msg) => {
 		const sheet = workbook.Sheets[sheetName];
 		const data = xlsx.utils.sheet_to_json(sheet, { header: 1, defval: '', raw: false});
 
-		console.log(data);
+		//console.log(data);
 
 		let message = 'Данные из Excel файла:\n';
 		const ignoreIndex = [];
-		data.slice(1).forEach((row, index) => {
+		data.slice(2).forEach((row, index) => {
+			console.log(row[0]);
 			const rowData = Object.values(row)
 				.filter(value => {
 					//console.log(typeof(row['__EMPTY']*1));
