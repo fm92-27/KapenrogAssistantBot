@@ -31,7 +31,7 @@ bot.onText(/\/getdata/, async (msg) => {
 		const ignoreIndex = [];
 		data.slice(1).forEach((row, index) => {
 			const rowData = Object.values(row)
-				.filter(value => {
+				.filter(([key, value]) => {
 					//console.log(typeof(row['__EMPTY']*1));
 					//if(row['__EMPTY'] === true) {
 					//}
@@ -42,7 +42,7 @@ bot.onText(/\/getdata/, async (msg) => {
 						ignoreIndex.push(index);
 						return false;
 					}
-					return value.trim() !== '' && value !== 'TRUE';
+					return value.trim() !== '' && value !== 'TRUE' && !key.startsWith('__EMPTY');
 				})
 				.join(' ');
 
