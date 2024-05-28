@@ -34,6 +34,7 @@ bot.onText(/\/getdata/, async (msg) => {
         data.slice(1).forEach((row, index) => {
           // Предполагаем, что первый столбец содержит флажки
           const flag = row[Object.keys(row)[0]]; // Значение флажка в первом столбце
+          console.log(flag);
         
           if (flag === 1) { // Проверяем, включен ли флажок
             const rowData = Object.keys(row)
