@@ -27,6 +27,8 @@ bot.onText(/\/getdata/, async (msg) => {
 		const sheet = workbook.Sheets[sheetName];
 		const data = xlsx.utils.sheet_to_json(sheet, { header: 1, defval: '', raw: false});
 
+		console.log(data);
+
 		let message = 'Данные из Excel файла:\n';
 		const ignoreIndex = [];
 		data.slice(1).forEach((row, index) => {
