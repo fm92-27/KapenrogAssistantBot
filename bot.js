@@ -33,11 +33,14 @@ bot.onText(/\/getdata/, async (msg) => {
 			const rowData = Object.values(row)
 				.filter(value => {
 					//console.log(row['__EMPTY']);
+					if (row === '__EMPTY') {
+						console.log(row);
+					}
 					if (value === 'FALSE') {
 						ignoreIndex.push(index);
 						return false;
 					}
-					return value.trim() !== '' && value !== 'TRUE' && !row['__EMPTY'];
+					return value.trim() !== '' && value !== 'TRUE';
 				})
 				.join(' ');
 
