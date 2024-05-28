@@ -36,13 +36,13 @@ bot.onText(/\/getdata/, async (msg) => {
 					//if(row['__EMPTY'] === true) {
 					//}
 					//if (row === '__EMPTY') {
-					console.log(row);
+					console.log(key);
 					//}
 					if (value === 'FALSE') {
 						ignoreIndex.push(index);
 						return false;
 					}
-					return value.trim() !== '' && value !== 'TRUE' && !key.startsWith('__EMPTY');
+					return value.trim() !== '' && value !== 'TRUE';
 				})
 				.join(' ');
 
