@@ -37,12 +37,12 @@ bot.onText(/\/getdata/, async (msg) => {
 						return false;
 					}
 					return value.trim() !== '' && value !== 'TRUE';
-				})
-				.join(' ');
+				});
+				//.join(' ');
 
 			if (rowData.trim() !== '' && !ignoreIndex.includes(index)) {
 				message += `Строка ${index + 1}: ${rowData}\n`;
-				console.log(typeof(rowData));
+				//console.log(typeof(rowData));
 			}
 		});
 
