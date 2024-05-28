@@ -29,8 +29,12 @@ bot.onText(/\/getdata/, async (msg) => {
 
 		let message = 'Данные из Excel файла:\n';
 		data.slice(1).forEach((row, index) => {
-			const rowData = Object.values(row).filter(value => value.trim() !== '' && value !== 'FALSE').join(' ');
-			if (rowData.trim() !== '') {
+			const ignoreIndex = [];
+			const rowData = Object.values(row)
+				.filter(value => value.trim() !== '' && value !== 'FALSE')
+				.map((val, ind) => val ? 'FALSE' : ignoreIndex.push(ind))
+				.join(' ');
+			if (rowData.trim() !== '' && ignoreIndex.find((i) => i !== index)) {
 				message += `Строка ${index + 2}: ${rowData}\n`;
 			}
 		});
