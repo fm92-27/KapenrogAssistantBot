@@ -25,7 +25,9 @@ bot.onText(/\/getdata/, async (msg) => {
 		const workbook = xlsx.readFile(tempFilePath);
 		const sheetName = workbook.SheetNames[0];
 		const sheet = workbook.Sheets[sheetName];
-		const data = xlsx.utils.sheet_to_json(sheet, { defval: '', raw: false, range: 'C1'});
+		const data = xlsx.utils.sheet_to_json(sheet, { defval: '', raw: false});
+
+		console.log(data[1][1]);
 
 		let message = 'Данные из Excel файла:\n';
 		const ignoreIndex = [];
