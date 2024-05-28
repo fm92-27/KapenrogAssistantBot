@@ -30,18 +30,24 @@ bot.onText(/\/getdata/, async (msg) => {
       // Преобразование данных в JSON
         const data = xlsx.utils.sheet_to_json(sheet, { defval: '' });
         let message = 'Данные из Excel файла:\n';
+
         data.slice(1).forEach((row, index) => {
+          console.log(`Обрабатывается строка ${index + 2}:`, row);
         //if (index > 0 && Object.values(row).some(value => value !== '')) {
-        const rowData = Object.values(row)
-          .filter(key => key !== '__EMPTY')
-          .map(key => row[key])
-          .filter(value => value !== '')
-          .join(' ');
-        if (rowData.trim() !== '') {
+          const rowData = Object.values(row)
+            .filter(key => key !== '__EMPTY')
+            .map(key => row[key])
+            .filter(value => value !== '')
+            .join(' ');
+          
+          console.log(`Отформатированные данные строки ${index + 2}:`, rowData);
+
+          if (rowData.trim() !== '') {
             message += `Строка ${index + 2}: ${rowData}\n`;
-            }
+          }
         });
   
+        console.log('Итоговое сообщение:', message);
         bot.sendMessage(chatId, message);
     } catch (error) {
         console.log('Ошибка при получении данных из файла:', error);
