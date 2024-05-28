@@ -28,13 +28,19 @@ bot.onText(/\/getdata/, async (msg) => {
 		const data = xlsx.utils.sheet_to_json(sheet, { defval: '', raw: false });
 
 		let message = 'Данные из Excel файла:\n';
+		const ignoreIndex = [];
 		data.slice(1).forEach((row, index) => {
-			const ignoreIndex = [];
 			const rowData = Object.values(row)
-				.filter(value => value.trim() !== '' && value !== 'FALSE')
-				.map((val, ind) => val ? 'FALSE' : ignoreIndex.push(ind))
+				.filter(value => {
+					if (value === 'FALSE') {
+						ignoreIndex.push(index);
+						return false;
+					}
+					return value.trim() !== '';
+				})
 				.join(' ');
-			if (rowData.trim() !== '' && ignoreIndex.find((i) => i !== index)) {
+
+			if (rowData.trim() !== '' && !ignoreIndex.includes(index)) {
 				message += `Строка ${index + 2}: ${rowData}\n`;
 			}
 		});
