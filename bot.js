@@ -33,9 +33,9 @@ bot.onText(/\/getdata/, async (msg) => {
 			const rowData = Object.values(row)
 				.filter(value => {
 					//console.log(typeof(row['__EMPTY']*1));
-					if(row['__EMPTY'] === true) {
-						console.log(value);
-					}
+					//if(row['__EMPTY'] === true) {
+					console.log(value['__EMPTY']);
+					//}
 					//if (row['__EMPTY'] === '__EMPTY') {
 					//	console.log(row);
 					//}
