@@ -32,7 +32,7 @@ bot.onText(/\/getdata/, async (msg) => {
 		data.slice(1).forEach((row, index) => {
 			const rowData = Object.values(row)
 				.filter(value => {
-					console.log(typeof(row));
+					console.log(row[__EMPTY]);
 					if (value === 'FALSE') {
 						ignoreIndex.push(index);
 						return false;
