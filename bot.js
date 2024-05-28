@@ -29,7 +29,7 @@ bot.onText(/\/getdata/, async (msg) => {
 
 		let message = 'Данные из Excel файла:\n';
 		data.forEach((row, index) => {
-			const rowData = Object.values(row).filter(value => value.trim() !== '').join(' ');
+			const rowData = Object.values(row).filter(value => value.trim() !== '' && value.trim() !== 'FALSE').join(' ');
 			if (rowData.trim() !== '') {
 				message += `Строка ${index + 2}: ${rowData}\n`;
 			}
