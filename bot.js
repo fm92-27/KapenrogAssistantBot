@@ -35,9 +35,9 @@ bot.onText(/\/getdata/, async (msg) => {
 					//console.log(typeof(row['__EMPTY']*1));
 					//if(row['__EMPTY'] === true) {
 					//}
-					if (row === '__EMPTY') {
-						console.log(row);
-					}
+					//if (row === '__EMPTY') {
+					console.log(row);
+					//}
 					if (value === 'FALSE') {
 						ignoreIndex.push(index);
 						return false;
