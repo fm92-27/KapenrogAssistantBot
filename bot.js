@@ -34,17 +34,16 @@ bot.onText(/\/getdata/, async (msg) => {
         data.slice(1).forEach((row, index) => {
           console.log(`Обрабатывается строка ${index + 2}:`, row);
         //if (index > 0 && Object.values(row).some(value => value !== '')) {
-          const rowData = Object.values(row);
-            //.filter(key => key !== '__EMPTY')
-            //.map(key => row[key])
-            //.filter(value => value && value.trim() !== '')
-            //.join(' ');
-          if(rowData !== ' ') {
-            console.log(`Отформатированные данные строки ${index + 2}:, ${rowData}`);
-          }
+          const rowData = Object.values(row)
+            .filter(key => key !== '__EMPTY')
+            .map(key => row[key])
+            .filter(value => value && value.trim() !== '')
+            .join(' ');
+          
 
           if (rowData.trim() !== '') {
             message += `Строка ${index + 2}: ${rowData}\n`;
+            console.log(`Отформатированные данные строки ${index + 2}:, ${rowData}`);
           }
         });
   
