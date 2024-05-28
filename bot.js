@@ -32,22 +32,19 @@ bot.onText(/\/getdata/, async (msg) => {
         let message = 'Данные из Excel файла:\n';
 
         data.slice(1).forEach((row, index) => {
-          console.log(`Обрабатывается строка ${index + 2}:`, row);
-        //if (index > 0 && Object.values(row).some(value => value !== '')) {
-          const rowData = Object.values(row)
-            .filter(key => key !== '__EMPTY')
-            .map(key => row[key])
-            .filter(value => value && value.trim() !== '')
-            .join(' ');
-          
-          //console.log(`rowData.trim(): ${rowData.trim()}`);
-
-          if (rowData.trim() !== '') {
-            message += `Строка ${index + 2}: ${rowData}\n`;
-            if(rowData != '') {
-              console.log(`rowData: ${rowData}`);
+          // Предполагаем, что первый столбец содержит флажки
+          const flag = row[Object.keys(row)[0]]; // Значение флажка в первом столбце
+        
+          if (flag === 1) { // Проверяем, включен ли флажок
+            const rowData = Object.keys(row)
+              .slice(1) // Пропускаем первый столбец с флажками
+              .map(key => row[key])
+              .filter(value => value && value.trim() !== '') // Учитываем только непустые значения
+              .join(' ');
+        
+            if (rowData.trim() !== '') {
+              message += `Строка ${index + 2}: ${rowData}\n`; // Индекс +2, чтобы учитывать заголовок и нумерацию с 1
             }
-            //console.log(`Отформатированные данные строки ${index + 2}:, ${rowData}`);
           }
         });
   
