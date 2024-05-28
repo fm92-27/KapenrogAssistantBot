@@ -32,8 +32,8 @@ bot.onText(/\/getdata/, async (msg) => {
 		let message = 'Данные из Excel файла:\n';
 		const ignoreIndex = [];
 		data.slice(2).forEach((row, index) => {
-			console.log(row[0]);
-			const rowData = Object.values(row)
+			//console.log(row[0]);
+			const rowData = Object.values(row.slice(1))
 				.filter(value => {
 					//console.log(typeof(row['__EMPTY']*1));
 					//if(row['__EMPTY'] === true) {
