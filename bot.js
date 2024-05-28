@@ -40,11 +40,14 @@ bot.onText(/\/getdata/, async (msg) => {
             .filter(value => value && value.trim() !== '')
             .join(' ');
           
-          console.log(`rowData.trim(): ${rowData.trim()}`);
+          //console.log(`rowData.trim(): ${rowData.trim()}`);
 
           if (rowData.trim() !== '') {
             message += `Строка ${index + 2}: ${rowData}\n`;
-            console.log(`Отформатированные данные строки ${index + 2}:, ${rowData}`);
+            if(rowData !== '') {
+              console.log(rowData);
+            }
+            //console.log(`Отформатированные данные строки ${index + 2}:, ${rowData}`);
           }
         });
   
