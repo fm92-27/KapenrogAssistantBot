@@ -37,7 +37,7 @@ bot.onText(/\/getdata/, async (msg) => {
           const rowData = Object.values(row)
             .filter(key => key !== '__EMPTY')
             .map(key => row[key])
-            .filter(value => value !== '')
+            .filter(value => value && value.trim() !== '')
             .join(' ');
           
           console.log(`Отформатированные данные строки ${index + 2}:`, rowData);
