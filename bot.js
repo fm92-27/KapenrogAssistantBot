@@ -27,19 +27,11 @@ bot.onText(/\/getdata/, async (msg) => {
 		const sheet = workbook.Sheets[sheetName];
 		const data = xlsx.utils.sheet_to_json(sheet, { header: 1, defval: '', raw: false});
 
-		//console.log(data);
-
 		let message = 'Данные из Excel файла:\n';
 		const ignoreIndex = [];
 		data.slice(2).forEach((row, index) => {
-			//console.log(row[0]);
 			const rowData = Object.values(row.slice(1))
 				.filter(value => {
-					//console.log(typeof(row['__EMPTY']*1));
-					//if(row['__EMPTY'] === true) {
-					//}
-					//if (row === '__EMPTY') {
-					//}
 					if (value === 'FALSE') {
 						ignoreIndex.push(index);
 						return false;
@@ -49,8 +41,8 @@ bot.onText(/\/getdata/, async (msg) => {
 				.join(' ');
 
 			if (rowData.trim() !== '' && !ignoreIndex.includes(index)) {
-				message += `Строка ${index + 2}: ${rowData}\n`;
-				//console.log(typeof(rowData));
+				message += `Строка ${index + 1}: ${rowData}\n`;
+				console.log(typeof(rowData));
 			}
 		});
 
