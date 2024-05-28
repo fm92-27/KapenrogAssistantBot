@@ -28,9 +28,9 @@ bot.onText(/\/getdata/, async (msg) => {
 		const data = xlsx.utils.sheet_to_json(sheet, { defval: '', raw: false });
 
 		let message = 'Данные из Excel файла:\n';
-		data.forEach((row, index) => {
-			const rowData = Object.values(row).filter(value => value.trim() !== '').join(' ');
-			if (rowData.trim() !== '' && rowData.trim() !== 'FALSE') {
+		data.slice(1).forEach((row, index) => {
+			const rowData = Object.values(row).filter(value => value.trim() !== '' && value !== 'FALSE').join(' ');
+			if (rowData.trim() !== '') {
 				message += `Строка ${index + 2}: ${rowData}\n`;
 			}
 		});
