@@ -42,7 +42,7 @@ bot.onText(/\/getdata/, async (msg) => {
     bot.sendMessage(chatId, message);
   } catch (error) {
     console.error('Ошибка при получении данных из файла:', error);
-    bot.sendMessage(chatId, 'Произошла ошибка при получении данных из файла.');
+    bot.sendMessage(chatId, `Произошла ошибка при получении данных из файла, ${error}`);
   }
 });
 
