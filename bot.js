@@ -33,8 +33,9 @@ bot.onText(/\/getdata/, async (msg) => {
         data.slice(1).forEach((row, index) => {
         //if (index > 0 && Object.values(row).some(value => value !== '')) {
         const rowData = Object.values(row)
-          .filter(([key, value]) => key !== '__EMPTY' && value !== '')
-          .map(([key, value]) => value)
+          .filter(key => key !== '__EMPTY')
+          .map(key => row[key])
+          .filter(value => value !== '')
           .join(' ');
         if (rowData.trim() !== '') {
             message += `Строка ${index + 2}: ${rowData}\n`;
