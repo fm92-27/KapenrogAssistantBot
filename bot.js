@@ -31,12 +31,12 @@ bot.onText(/\/getdata/, async (msg) => {
 		const ignoreIndex = [];
 		data.slice(1).forEach((row, index) => {
 			const rowData = Object.values(row)
-				.filter(value => {
+				.filter(value, i => {
 					if (value === 'FALSE') {
 						ignoreIndex.push(index);
 						return false;
 					}
-					return value.trim() !== '';
+					return value.trim() !== '' && value !== 'TRUE';
 				})
 				.join(' ');
 
