@@ -26,15 +26,14 @@ bot.onText(/\/getdata/, async (msg) => {
 		const sheetName = workbook.SheetNames[0];
 		const sheet = workbook.Sheets[sheetName];
 		const data = xlsx.utils.sheet_to_json(sheet, { defval: '', raw: false});
+		console.log(data);
+		console.log(typeof(data));
 
 		let message = 'Данные из Excel файла:\n';
 		const ignoreIndex = [];
 		data.slice(1).forEach((row, index) => {
 			const rowData = Object.values(row)
 				.filter(value => {
-					if (row.indexOf('__EMPTY') == -1) {
-						console.log(row);
-					};
 					//console.log(typeof(row['__EMPTY']*1));
 					//if(row['__EMPTY'] === true) {
 					//}
