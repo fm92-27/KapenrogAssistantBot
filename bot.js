@@ -32,7 +32,7 @@ bot.onText(/\/getdata/, async (msg) => {
 		data.slice(1).forEach((row, index) => {
 			const rowData = Object.values(row)
 				.filter(value => {
-					//console.log(value);
+					console.log(row[0]);
 					if (value === 'FALSE') {
 						ignoreIndex.push(index);
 						return false;
@@ -43,7 +43,7 @@ bot.onText(/\/getdata/, async (msg) => {
 
 			if (rowData.trim() !== '' && !ignoreIndex.includes(index)) {
 				message += `Строка ${index + 2}: ${rowData}\n`;
-				console.log(typeof(rowData));
+				//console.log(typeof(rowData));
 			}
 		});
 
