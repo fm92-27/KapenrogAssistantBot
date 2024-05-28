@@ -34,11 +34,10 @@ bot.onText(/\/getdata/, async (msg) => {
 				.filter(value => {
 					//console.log(typeof(row['__EMPTY']*1));
 					//if(row['__EMPTY'] === true) {
-					console.log(value['__EMPTY']);
 					//}
-					//if (row['__EMPTY'] === '__EMPTY') {
-					//	console.log(row);
-					//}
+					if (row === '__EMPTY') {
+						console.log(row);
+					}
 					if (value === 'FALSE') {
 						ignoreIndex.push(index);
 						return false;
