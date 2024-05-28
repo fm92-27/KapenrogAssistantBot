@@ -25,18 +25,18 @@ bot.onText(/\/getdata/, async (msg) => {
 		const workbook = xlsx.readFile(tempFilePath);
 		const sheetName = workbook.SheetNames[0];
 		const sheet = workbook.Sheets[sheetName];
-		const data = xlsx.utils.sheet_to_json(sheet, { defval: '', raw: false });
+		const data = xlsx.utils.sheet_to_json(sheet, { defval: '', raw: false});
 
 		let message = 'Данные из Excel файла:\n';
 		const ignoreIndex = [];
 		data.slice(1).forEach((row, index) => {
 			const rowData = Object.values(row)
-				.filter(([key, value]) => {
+				.filter(value => {
+					console.log(row, index);
 					//console.log(typeof(row['__EMPTY']*1));
 					//if(row['__EMPTY'] === true) {
 					//}
 					//if (row === '__EMPTY') {
-					console.log(key);
 					//}
 					if (value === 'FALSE') {
 						ignoreIndex.push(index);
