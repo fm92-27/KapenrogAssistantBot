@@ -1,15 +1,16 @@
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios');
-const xlsx = require('xlsx');
-const readXlsxFile = require('read-excel-file/node');
+const fetch = require('node-fetch');
 const fs = require('fs');
+const readXlsxFile = require('read-excel-file/node');
 
-const token = '6417160738:AAHXA2LCdObDBtVwR65X0VQtOsIEgf8-BoM';
+// Вставьте ваш токен Telegram-бота
+const token = 'YOUR_TELEGRAM_BOT_TOKEN';
 const bot = new TelegramBot(token, { polling: true });
 
 bot.onText(/\/start/, (msg) => {
-    const chatId = msg.chat.id;
-    bot.sendMessage(chatId, 'Привет! Я ваш Telegram-бот.');
+  const chatId = msg.chat.id;
+  bot.sendMessage(chatId, 'Привет! Я ваш Telegram-бот.');
 });
 
 bot.onText(/\/getdata/, async (msg) => {
@@ -18,10 +19,13 @@ bot.onText(/\/getdata/, async (msg) => {
 
   try {
     // Скачивание файла
-    const response = await axios.get(fileUrl, { responseType: 'arraybuffer' });
-    const buffer = Buffer.from(response.data, 'binary');
+    const response = await fetch(fileUrl);
+    if (!response.ok) {
+      throw new Error(`Не удалось скачать файл: ${response.statusText}`);
+    }
 
     // Запись буфера во временный файл
+    const buffer = await response.buffer();
     const tempFilePath = '/tmp/temp.xlsx';
     fs.writeFileSync(tempFilePath, buffer);
 
@@ -42,12 +46,11 @@ bot.onText(/\/getdata/, async (msg) => {
     bot.sendMessage(chatId, message);
   } catch (error) {
     console.error('Ошибка при получении данных из файла:', error);
-    bot.sendMessage(chatId, `Произошла ошибка при получении данных из файла, ${error}`);
+    bot.sendMessage(chatId, 'Произошла ошибка при получении данных из файла.');
   }
 });
 
-// Обработчик других сообщений
 bot.on('message', (msg) => {
-    const chatId = msg.chat.id;
-    bot.sendMessage(chatId, 'Вы написали: ' + msg.text);
+  const chatId = msg.chat.id;
+  bot.sendMessage(chatId, 'Вы написали: ' + msg.text);
 });
