@@ -40,6 +40,7 @@ bot.onText(/\/getdata/, async (msg) => {
             .filter(value => value && value.trim() !== '')
             .join(' ');
           
+          console.log(`rowData.trim(): ${rowData.trim()}`);
 
           if (rowData.trim() !== '') {
             message += `Строка ${index + 2}: ${rowData}\n`;
