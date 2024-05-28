@@ -45,7 +45,7 @@ bot.onText(/\/getdata/, async (msg) => {
           if (rowData.trim() !== '') {
             message += `Строка ${index + 2}: ${rowData}\n`;
             if(rowData !== '') {
-              console.log(rowData);
+              console.log(`rowData: ${rowData}`);
             }
             //console.log(`Отформатированные данные строки ${index + 2}:, ${rowData}`);
           }
