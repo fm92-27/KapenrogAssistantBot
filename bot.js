@@ -42,6 +42,7 @@ bot.onText(/\/getdata/, async (msg) => {
 
 			if (rowData.trim() !== '' && !ignoreIndex.includes(index)) {
 				message += `Строка ${index + 2}: ${rowData}\n`;
+				console.log(rowData);
 			}
 		});
 
