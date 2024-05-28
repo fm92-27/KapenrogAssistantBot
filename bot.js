@@ -32,12 +32,12 @@ bot.onText(/\/getdata/, async (msg) => {
 		data.slice(1).forEach((row, index) => {
 			const rowData = Object.values(row)
 				.filter(value => {
-					console.log(row['__EMPTY']);
+					//console.log(row['__EMPTY']);
 					if (value === 'FALSE') {
 						ignoreIndex.push(index);
 						return false;
 					}
-					return value.trim() !== '' && value !== 'TRUE';
+					return value.trim() !== '' && value !== 'TRUE' && !row['__EMPTY'];
 				})
 				.join(' ');
 
