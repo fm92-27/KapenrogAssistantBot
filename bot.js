@@ -55,8 +55,8 @@ bot.onText(/\/getdata/, async (msg) => {
 			if (!ignoreIndex.includes(index)) {
 				message += `Поставщик: ${rowData[0]}\n`;
 
-				console.log(rowData);
-				//console.log(rowData[0]);
+				console.log(typeof(rowData));
+				console.log(typeof(rowData[0]));
 
 				bot.sendMessage(chatId, 'Test: ', {
 					reply_markup: {
