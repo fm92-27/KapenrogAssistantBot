@@ -56,12 +56,12 @@ bot.onText(/\/getdata/, async (msg) => {
 				message += `Поставщик: ${rowData[0]}\n`;
 
 				//var obj = [];
-				console.log(typeof(rowData));
-				console.log(typeof([rowData[0]]));
+				//console.log(typeof(rowData));
+				//console.log(typeof([rowData[0]]));
 
 				bot.sendMessage(chatId, 'Test: ', {
 					reply_markup: {
-						inline_keyboard: () => createButtons(rowData)
+						inline_keyboard: createButtons([rowData[0]])
 					}
 				});
 				
