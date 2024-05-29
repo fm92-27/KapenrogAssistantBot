@@ -1,10 +1,12 @@
 const TelegramBot = require('node-telegram-bot-api');
+const { Telegraf, Markup } = require('telegraf');
 const axios = require('axios');
 const xlsx = require('xlsx');
 const fs = require('fs');
 
 const token = '6417160738:AAHXA2LCdObDBtVwR65X0VQtOsIEgf8-BoM';
 const bot = new TelegramBot(token, { polling: true });
+const botReply = new Telegraf(token);
 
 function createButtons(commandToBot) {
 	return [{
@@ -48,14 +50,13 @@ bot.onText(/\/getdata/, async (msg) => {
 
 			if (!ignoreIndex.includes(index)) {
 				message += `Поставщик: ${rowData[0]}\n`;
-				const buttons = createButtons(rowData[0]);
 
-				console.log(buttons);
-
-				bot.sendMessage(msg.chat.id, 'Выберите данные:', {
-					reply_markup: {
-						inline_keyboard: buttons
-					}
+				botReply.command('Выберите данные:', async (ctx) => {
+					const buttons = createButtons(rowData[0]);
+					ctx.reply(Markup.inlineKeyboard(buttons));
+				});
+				botReply.action(/\data_\d+/, (ctx) => {
+					const indexReply = parseInt(ctx.match[0].split('_')[1]);
 				});
 			}
 		});
