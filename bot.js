@@ -9,10 +9,10 @@ const bot = new TelegramBot(token, { polling: true });
 //const botReply = new Telegraf(token);
 
 function createButtons(commandToBot) {
-	return [{
+	return {
 		text: `${commandToBot}`,
 		callback_data: `${commandToBot}`
-	}];
+	};
 }
 
 bot.onText(/\/start/, (msg) => {
@@ -53,11 +53,11 @@ bot.onText(/\/getdata/, async (msg) => {
 
 				console.log(createButtons(rowData[0]));
 
-				/*bot.sendMessage(chatId, 'Test: ', {
+				bot.sendMessage(chatId, 'Test: ', {
 					reply_markup: {
 						inline_keyboard: createButtons(rowData[0])
 					}
-				});*/
+				});
 				
 				/*botReply.command('Выберите данные:', async (ctx) => {
 					const buttons = createButtons(rowData[0]);
