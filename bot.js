@@ -60,6 +60,9 @@ bot.onText(/\/getdata/, async (msg) => {
 						const indexReply = parseInt(ctx.match[0].split('_')[1]);
 					});
 				};
+
+				console.log(returnData());
+				
 				message += `Поставщик: ${returnData()}\n`;
 
 				/*botReply.command('Выберите данные:', async (ctx) => {
