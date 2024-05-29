@@ -6,6 +6,13 @@ const fs = require('fs');
 const token = '6417160738:AAHXA2LCdObDBtVwR65X0VQtOsIEgf8-BoM';
 const bot = new TelegramBot(token, { polling: true });
 
+function createButtons(commandToBot) {
+	return [{
+		text: `${commandToBot}`,
+		callback_data: `${commandToBot}`
+	}];
+}
+
 bot.onText(/\/start/, (msg) => {
 	const chatId = msg.chat.id;
 	bot.sendMessage(chatId, 'Привет! Я ваш Telegram-бот.');
@@ -41,6 +48,13 @@ bot.onText(/\/getdata/, async (msg) => {
 
 			if (!ignoreIndex.includes(index)) {
 				message += `Поставщик: ${rowData[0]}\n`;
+				const buttons = createButtons(rowData[0]);
+
+				bot.sendMessage(msg.chat.id, 'Выберите данные:', {
+					reply_markup: {
+						inline_keyboard: buttons
+					}
+				});
 			}
 		});
 
