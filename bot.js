@@ -60,7 +60,7 @@ bot.onText(/\/getdata/, async (msg) => {
 					//	const indexReply = parseInt(ctx.match[0].split('_')[1]);
 					//});
 				};
-				message += `Поставщик: ${returnData}\n`;
+				message += `Поставщик: ${returnData()}\n`;
 
 				/*botReply.command('Выберите данные:', async (ctx) => {
 					const buttons = createButtons(rowData[0]);
