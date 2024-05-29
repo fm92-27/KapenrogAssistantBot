@@ -52,13 +52,13 @@ bot.onText(/\/getdata/, async (msg) => {
 				//message += `Поставщик: ${rowData[0]}\n`;
 
 				const returnData = () => {
-					return botReply.command('Выберите данные:', async (ctx) => {
+					botReply.command('Выберите данные:', async (ctx) => {
 						const buttons = createButtons(rowData[0]);
 						return ctx.reply(Markup.inlineKeyboard(buttons));
 					});
-					//botReply.action(/\data_\d+/, (ctx) => {
-					//	const indexReply = parseInt(ctx.match[0].split('_')[1]);
-					//});
+					return botReply.action(/\data_\d+/, (ctx) => {
+						const indexReply = parseInt(ctx.match[0].split('_')[1]);
+					});
 				};
 				message += `Поставщик: ${returnData()}\n`;
 
