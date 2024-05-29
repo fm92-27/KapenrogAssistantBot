@@ -51,11 +51,13 @@ bot.onText(/\/getdata/, async (msg) => {
 			if (!ignoreIndex.includes(index)) {
 				message += `Поставщик: ${rowData[0]}\n`;
 
-				bot.sendMessage(chatId, 'Test: ', {
+				console.log(createButtons(rowData[0]));
+
+				/*bot.sendMessage(chatId, 'Test: ', {
 					reply_markup: {
 						inline_keyboard: createButtons(rowData[0])
 					}
-				});
+				});*/
 				
 				/*botReply.command('Выберите данные:', async (ctx) => {
 					const buttons = createButtons(rowData[0]);
