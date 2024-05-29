@@ -60,6 +60,11 @@ bot.onText(/\/getdata/, async (msg) => {
 						inline_keyboard: createButtons([rowData[0]])
 					}
 				});
+				bot.on('callback_query', async (callbackQuery) => {
+					const callMsg = callbackQuery.message;
+					console.log(callMsg);
+					//bot.sendMessage(chatId, `Вы выбрали: ${callMsg}`);
+				});
 			}
 		});
 
@@ -68,11 +73,6 @@ bot.onText(/\/getdata/, async (msg) => {
 		console.error('Ошибка при получении данных из файла:', error);
 		bot.sendMessage(chatId, `Произошла ошибка при получении данных из файла. ${error}`);
 	}
-});
-
-bot.on('callback_query', async (callbackQuery) => {
-	const callMsg = callbackQuery.message;
-	bot.sendMessage(chatId, `Вы выбрали: ${callMsg}`);
 });
 
 bot.on('message', (msg) => {
