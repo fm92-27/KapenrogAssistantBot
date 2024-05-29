@@ -50,6 +50,8 @@ bot.onText(/\/getdata/, async (msg) => {
 				message += `Поставщик: ${rowData[0]}\n`;
 				const buttons = createButtons(rowData[0]);
 
+				console.log(buttons);
+
 				bot.sendMessage(msg.chat.id, 'Выберите данные:', {
 					reply_markup: {
 						inline_keyboard: buttons
