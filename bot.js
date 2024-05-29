@@ -53,11 +53,11 @@ bot.onText(/\/getdata/, async (msg) => {
 			if (!ignoreIndex.includes(index)) {
 				message += `Поставщик: ${rowData[0]}\n`;
 
-				console.log(createButtons(rowData[0]));
+				console.log(createButtons(rowData));
 
 				bot.sendMessage(chatId, 'Test: ', {
 					reply_markup: {
-						inline_keyboard: createButtons(rowData[0])
+						inline_keyboard: createButtons(rowData)
 					}
 				});
 				
