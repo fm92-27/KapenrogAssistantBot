@@ -38,11 +38,9 @@ bot.onText(/\/getdata/, async (msg) => {
 					}
 					return value.trim() !== '' && value !== 'TRUE';
 				});
-			//console.log(typeof(rowData) + ' ' + rowData);
 
-			if (/*rowData.trim() !== '' &&*/ !ignoreIndex.includes(index)) {
-				message += `Строка ${index + 1}: ${rowData[1]}\n`;
-				//console.log(typeof(rowData));
+			if (!ignoreIndex.includes(index)) {
+				message += `Поставщик: ${rowData[0]}\n`;
 			}
 		});
 
