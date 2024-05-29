@@ -60,7 +60,8 @@ bot.onText(/\/getdata/, async (msg) => {
 				bot.sendMessage(chatId, 'Test: ', {
 					reply_markup: {
 						inline_keyboard: () => {
-							console.log(createButtons(rowData)[0])
+							console.log(createButtons(rowData));
+							console.log(typeof(createButtons(rowData)))
 						}
 					}
 				});
