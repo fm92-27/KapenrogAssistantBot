@@ -10,10 +10,12 @@ const bot = new TelegramBot(token, { polling: true });
 
 function createButtons(commandToBot) {
 	return commandToBot.map((row, index) => {
-		return [{
-			text: `${row}`,
-			callback_data: `${row}`
-		}];
+		if (index === 0) {
+			return [{
+				text: `${row}`,
+				callback_data: `${row}`
+			}];
+		}
 	});
 }
 
