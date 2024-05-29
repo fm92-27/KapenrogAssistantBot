@@ -9,10 +9,12 @@ const bot = new TelegramBot(token, { polling: true });
 //const botReply = new Telegraf(token);
 
 function createButtons(commandToBot) {
-	return {
-		text: `${commandToBot}`,
-		callback_data: `${commandToBot}`
-	};
+	return commandToBot.map((row, index) => {
+		return [{
+			text: `${row}`,
+			callback_data: `${row}`
+		}];
+	});
 }
 
 bot.onText(/\/start/, (msg) => {
