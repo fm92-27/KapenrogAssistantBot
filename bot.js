@@ -12,6 +12,7 @@ function createButtons(commandToBot) {
 	return resButton = commandToBot.map((row, index) => {
 		//console.log(row, index);
 		if (index == 0) {
+			console.log(row);
 			return [{
 				text: `${row}`,
 				callback_data: `${row}`
