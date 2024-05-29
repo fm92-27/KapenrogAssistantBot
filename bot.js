@@ -38,7 +38,7 @@ bot.onText(/\/getdata/, async (msg) => {
 					}
 					return value.trim() !== '' && value !== 'TRUE';
 				});
-				//.join(' ');
+			console.log(typeof(rowData) + ' ' + rowData);
 
 			if (/*rowData.trim() !== '' &&*/ !ignoreIndex.includes(index)) {
 				message += `Строка ${index + 1}: ${rowData}\n`;
