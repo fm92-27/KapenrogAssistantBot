@@ -40,7 +40,7 @@ bot.onText(/\/getdata/, async (msg) => {
 				});
 				//.join(' ');
 
-			if (rowData.trim() !== '' && !ignoreIndex.includes(index)) {
+			if (/*rowData.trim() !== '' &&*/ !ignoreIndex.includes(index)) {
 				message += `Строка ${index + 1}: ${rowData}\n`;
 				//console.log(typeof(rowData));
 			}
