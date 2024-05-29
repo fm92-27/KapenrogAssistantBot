@@ -8,12 +8,12 @@ const token = '6417160738:AAHXA2LCdObDBtVwR65X0VQtOsIEgf8-BoM';
 const bot = new TelegramBot(token, { polling: true });
 const botReply = new Telegraf(token);
 
-function createButtons(commandToBot) {
+/*function createButtons(commandToBot) {
 	return [{
 		text: `${commandToBot}`,
 		callback_data: `${commandToBot}`
 	}];
-}
+}*/
 
 bot.onText(/\/start/, (msg) => {
 	const chatId = msg.chat.id;
@@ -50,23 +50,20 @@ bot.onText(/\/getdata/, async (msg) => {
 
 			if (!ignoreIndex.includes(index)) {
 				message += `Поставщик: ${rowData[0]}\n`;
+
+				bot.sendMessage(chatId, 'Test: ', {
+					reply_markup: {
+						inline_keyboard: rowData[0]
+					}
+				});
 				
-				botReply.command('Выберите данные:', async (ctx) => {
+				/*botReply.command('Выберите данные:', async (ctx) => {
 					const buttons = createButtons(rowData[0]);
 					return ctx.reply(Markup.inlineKeyboard(buttons));
 				});
 				botReply.action(/\data_\d+/, (ctx) => {
 					return parseInt(ctx.match[0].split('_')[1]);
-				});
-
-				/*botReply.command('Выберите данные:', async (ctx) => {
-					const buttons = createButtons(rowData[0]);
-					ctx.reply(Markup.inlineKeyboard(buttons));
-				});
-				botReply.action(/\data_\d+/, (ctx) => {
-					const indexReply = parseInt(ctx.match[0].split('_')[1]);
-				});
-				botReply.launch();*/
+				});*/
 			}
 		});
 
