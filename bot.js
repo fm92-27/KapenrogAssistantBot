@@ -10,11 +10,13 @@ const bot = new TelegramBot(token, { polling: true });
 
 function createButtons(commandToBot) {
 	return resButton = commandToBot.map((row, index) => {
-		console.log(row, index);
-		return [{
-			text: `${row}`,
-			callback_data: `${row}`
-		}];
+		//console.log(row, index);
+		if (index == 0) {
+			return [{
+				text: `${row}`,
+				callback_data: `${row}`
+			}];
+		}
 	});
 
 	//return resButton.map(subArray => subArray[0]);
@@ -56,7 +58,7 @@ bot.onText(/\/getdata/, async (msg) => {
 			if (!ignoreIndex.includes(index)) {
 				message += `Поставщик: ${rowData[0]}\n`;
 
-				console.log(createButtons(rowData)[0]);
+				//console.log(createButtons(rowData)[0]);
 
 				bot.sendMessage(chatId, 'Test: ', {
 					reply_markup: {
