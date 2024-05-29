@@ -10,10 +10,9 @@ const bot = new TelegramBot(token, { polling: true });
 
 function createButtons(commandToBot) {
 	return resButton = commandToBot.map((row, index) => {
-		const rowButtenData = Object.values((row, index) => index ? 0: raw);
 		return [{
-			text: `${rowButtenData}`,
-			callback_data: `${rowButtenData}`
+			text: `${row}`,
+			callback_data: `${row}`
 		}];
 	});
 
@@ -60,7 +59,7 @@ bot.onText(/\/getdata/, async (msg) => {
 
 				bot.sendMessage(chatId, 'Test: ', {
 					reply_markup: {
-						inline_keyboard: createButtons(rowData)
+						inline_keyboard: () => createButtons(rowData)[0]
 					}
 				});
 				
