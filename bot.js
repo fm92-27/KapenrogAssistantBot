@@ -1,19 +1,19 @@
 const TelegramBot = require('node-telegram-bot-api');
-const { Telegraf, Markup } = require('telegraf');
+//const { Telegraf, Markup } = require('telegraf');
 const axios = require('axios');
 const xlsx = require('xlsx');
 const fs = require('fs');
 
 const token = '6417160738:AAHXA2LCdObDBtVwR65X0VQtOsIEgf8-BoM';
 const bot = new TelegramBot(token, { polling: true });
-const botReply = new Telegraf(token);
+//const botReply = new Telegraf(token);
 
-/*function createButtons(commandToBot) {
+function createButtons(commandToBot) {
 	return [{
 		text: `${commandToBot}`,
 		callback_data: `${commandToBot}`
 	}];
-}*/
+}
 
 bot.onText(/\/start/, (msg) => {
 	const chatId = msg.chat.id;
@@ -53,7 +53,7 @@ bot.onText(/\/getdata/, async (msg) => {
 
 				bot.sendMessage(chatId, 'Test: ', {
 					reply_markup: {
-						inline_keyboard: rowData[0]
+						inline_keyboard: createButtons(rowData[0])
 					}
 				});
 				
