@@ -38,10 +38,10 @@ bot.onText(/\/getdata/, async (msg) => {
 					}
 					return value.trim() !== '' && value !== 'TRUE';
 				});
-			console.log(typeof(rowData) + ' ' + rowData);
+			//console.log(typeof(rowData) + ' ' + rowData);
 
 			if (/*rowData.trim() !== '' &&*/ !ignoreIndex.includes(index)) {
-				message += `Строка ${index + 1}: ${rowData}\n`;
+				message += `Строка ${index + 1}: ${rowData[1]}\n`;
 				//console.log(typeof(rowData));
 			}
 		});
