@@ -58,6 +58,7 @@ bot.onText(/\/getdata/, async (msg) => {
 				botReply.action(/\data_\d+/, (ctx) => {
 					const indexReply = parseInt(ctx.match[0].split('_')[1]);
 				});
+				botReply.launch();
 			}
 		});
 
