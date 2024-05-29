@@ -3,6 +3,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios');
 const xlsx = require('xlsx');
 const fs = require('fs');
+const { callbackQuery } = require('telegraf/filters');
 
 const token = '6417160738:AAHXA2LCdObDBtVwR65X0VQtOsIEgf8-BoM';
 const bot = new TelegramBot(token, { polling: true });
@@ -53,34 +54,26 @@ bot.onText(/\/getdata/, async (msg) => {
 				});
 
 			if (!ignoreIndex.includes(index)) {
-				message += `Поставщик: ${rowData[0]}\n`;
-
-				//var obj = [];
-				//console.log(typeof(rowData));
-				//console.log(typeof([rowData[0]]));
-
-				bot.sendMessage(chatId, 'Test: ', {
+				//message += `Поставщик: ${rowData[0]}\n`;
+				bot.sendMessage(chatId, 'Поставщик: ', {
 					reply_markup: {
 						inline_keyboard: createButtons([rowData[0]])
 					}
 				});
-				
-				/*botReply.command('Выберите данные:', async (ctx) => {
-					const buttons = createButtons(rowData[0]);
-					return ctx.reply(Markup.inlineKeyboard(buttons));
-				});
-				botReply.action(/\data_\d+/, (ctx) => {
-					return parseInt(ctx.match[0].split('_')[1]);
-				});*/
 			}
 		});
 
-		bot.sendMessage(chatId, message);
+		//bot.sendMessage(chatId, message);
 	} catch (error) {
 		console.error('Ошибка при получении данных из файла:', error);
 		bot.sendMessage(chatId, `Произошла ошибка при получении данных из файла. ${error}`);
 	}
-})
+});
+
+bot.on('callback_query', async (callbackQuery) => {
+	const callMsg = callbackQuery.message;
+	bot.sendMessage(chatId, `Вы выбрали: ${callMsg}`);
+});
 
 bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
