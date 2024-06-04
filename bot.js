@@ -7,16 +7,24 @@ const path = require('path');
 
 const token = process.env.token;
 const bot = new TelegramBot(token, { polling: true });
-const userInfoBuffer = [];
+const usedInfoBufferFile = path.join(__dirname, 'usedInfoBuffer.json');
+const usedInfoBuffer = [];
+if (fs.existsSync(usedInfoBufferFile)) {
+	usedInfoBuffer = JSON.parse(fs.readFileSync(usedInfoBufferFile, 'utf8'));
+}
 
 const hello = require('./dist/hello');
 
 bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
+	const usedId = msg.from.id;
 
-	if (!Object.values(userInfoBuffer).includes(chatId)) {
+	if (usedInfoBuffer.includes(usedId)) {
+		bot.sendMessage(chatId, `${msg.from.first_name}, придумай что получше.`);
+	} else {
 		hello(bot, msg, chatId);
-		userInfoBuffer.push(chatId);
+		usedInfoBuffer.push(usedId);
+		fs.writeFileSync(usedInfoBufferFile, JSON.stringify(usedInfoBuffer), 'utf8');
 	}
 })
 
