@@ -6,9 +6,16 @@ const { callbackQuery } = require('telegraf/filters');
 
 const token = process.env.token;
 const bot = new TelegramBot(token, { polling: true });
-//const botReply = new Telegraf(token);
 
-function createButtons(commandToBot) {
+const hello = require('./dist/hello');
+
+bot.on('message', (msg) => {
+	const chatId = msg.chat.id;
+
+	hello(bot, msg, chatId);
+})
+
+/*function createButtons(commandToBot) {
 	return resButton = commandToBot.map((row, index) => {
 		return [{
 			text: `${row}`,
@@ -16,11 +23,6 @@ function createButtons(commandToBot) {
 		}];
 	});
 }
-
-bot.onText(/\/start/, (msg) => {
-	const chatId = msg.chat.id;
-	bot.sendMessage(chatId, 'Привет! Я ваш Telegram-бот.');
-});
 
 bot.onText(/\/getdata/, async (msg) => {
 	const chatId = msg.chat.id;
@@ -77,6 +79,6 @@ bot.onText(/\/getdata/, async (msg) => {
 bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
 	bot.sendMessage(chatId, 'Вы написали: ' + msg.text);
-});
+});*/
 
 console.log('Бот запущен');
