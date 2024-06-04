@@ -58,8 +58,11 @@ bot.onText(/\/getdata/, async (msg) => {
 				});
 				bot.on('callback_query', async (callbackQuery) => {
 					const callData = callbackQuery.data;
-					console.log(callData);
-					bot.sendMessage(chatId, `Вы выбрали: ${callData}`);
+					//console.log(callData);
+					if (callData !== curretData) {
+						const curretData = callData;
+						bot.sendMessage(chatId, `Вы выбрали: ${callData}`);
+					}
 				});
 			}
 		});
