@@ -19,12 +19,14 @@ bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
 	const usedId = msg.from.id;
 
-	if (usedInfoBuffer.includes(usedId)) {
-		bot.sendMessage(chatId, `${msg.from.first_name}, придумай что получше.`);
-	} else {
-		hello(bot, msg, chatId);
-		usedInfoBuffer.push(usedId);
-		fs.writeFileSync(usedInfoBufferFile, JSON.stringify(usedInfoBuffer), 'utf8');
+	if (msg.text.toLowerCase() === '/start') {
+		if (usedInfoBuffer.includes(usedId)) {
+			bot.sendMessage(chatId, `${msg.from.first_name}, придумай что получше.`);
+		} else {
+			hello(bot, msg, chatId);
+			usedInfoBuffer.push(usedId);
+			fs.writeFileSync(usedInfoBufferFile, JSON.stringify(usedInfoBuffer), 'utf8');
+		}
 	}
 })
 
