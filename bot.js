@@ -14,7 +14,7 @@ const hello = require('./dist/hello');
 bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
 
-	if (!userInfoBuffer.includes(chatId)) {
+	if (!Object.values(userInfoBuffer).includes(chatId)) {
 		hello(bot, msg, chatId);
 		userInfoBuffer.push(chatId);
 	}
