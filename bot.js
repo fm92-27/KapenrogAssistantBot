@@ -1,18 +1,27 @@
 const TelegramBot = require('node-telegram-bot-api');
-const axios = require('axios');
-const xlsx = require('xlsx');
 const fs = require('fs');
-const { callbackQuery } = require('telegraf/filters');
+const path = require('path');
+//const axios = require('axios');
+//const xlsx = require('xlsx');
+//const { callbackQuery } = require('telegraf/filters');
 
 const token = process.env.token;
 const bot = new TelegramBot(token, { polling: true });
+const userStartCommandFilePath = path.join(__dirname, 'userStartCommand.json');
+
+let userStartCommand = [];
+if (fs.existsSync(userStartCommandFilePath)) {
+	userStartCommand = JSON.parse(fs.readFileSync(userStartCommandFilePath, 'utf8'));
+}
 
 const hello = require('./dist/hello');
 
 bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
 
-	hello(bot, msg, chatId);
+	if (!userStartCommand.includes(chatId)) {
+		hello(bot, msg, chatId);
+	}
 })
 
 /*function createButtons(commandToBot) {
