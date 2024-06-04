@@ -19,8 +19,10 @@ const hello = require('./dist/hello');
 bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
 
-	if (!userStartCommand.includes(chatId)) {
-		hello(bot, msg, chatId);
+	if (msg.text.toLowerCase() === '/start') {
+		if (!userStartCommand.includes(chatId)) {
+			hello(bot, msg, chatId);
+		}
 	}
 })
 
