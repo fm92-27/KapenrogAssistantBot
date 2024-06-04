@@ -7,24 +7,16 @@ const path = require('path');
 
 const token = process.env.token;
 const bot = new TelegramBot(token, { polling: true });
-const usedStartCommandFilePath = path.join(__dirname, 'usedStartCommand.json');
-
-let userStartCommand = [];
-if (fs.existsSync(usedStartCommandFilePath)) {
-	usedStartCommand = JSON.parse(fs.readFileSync(usedStartCommandFilePath, 'utf8'));
-}
+const userInfoBuffer = [];
 
 const hello = require('./dist/hello');
 
 bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
 
-	if (msg.text.toLowerCase() === '/start') {
-		if (fs.writeFileSync(usedStartCommandFilePath, JSON.stringify(userStartCommand), 'utf8') !== chatId) {
-			hello(bot, msg, chatId);
-			usedStartCommandFilePath.push(chatId);
-			fs.writeFileSync(usedStartCommandFilePath, JSON.stringify(userStartCommand), 'utf8');
-		}
+	if (!userInfoBuffer.includes(chatId)) {
+		hello(bot, msg, chatId);
+		userInfoBuffer.push(chatId);
 	}
 })
 
