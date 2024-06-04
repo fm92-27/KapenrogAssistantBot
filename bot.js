@@ -20,7 +20,7 @@ bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
 
 	if (msg.text.toLowerCase() === '/start') {
-		if (!usedStartCommand.includes(chatId)) {
+		if (usedStartCommand.includes(chatId) !== chatId) {
 			hello(bot, msg, chatId);
 			usedStartCommandFilePath.push(chatId);
 			fs.writeFileSync(usedStartCommandFilePath, JSON.stringify(userStartCommand), 'utf8');
