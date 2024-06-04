@@ -5,7 +5,7 @@ const xlsx = require('xlsx');
 const fs = require('fs');
 const { callbackQuery } = require('telegraf/filters');
 
-const token = '6417160738:AAHXA2LCdObDBtVwR65X0VQtOsIEgf8-BoM';
+const token = process.env.token;
 const bot = new TelegramBot(token, { polling: true });
 //const botReply = new Telegraf(token);
 

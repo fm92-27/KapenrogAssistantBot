@@ -5,7 +5,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const app = express();
 app.use(bodyParser.json());
 
-const token = '6417160738:AAHXA2LCdObDBtVwR65X0VQtOsIEgf8-BoM';
+const token = process.env.token;
 const bot = new TelegramBot(token);
 
 bot.setWebHook(`https://${process.env.VERCEL_URL}/bot${token}`);
