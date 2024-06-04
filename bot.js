@@ -1,5 +1,4 @@
 const TelegramBot = require('node-telegram-bot-api');
-//const { Telegraf, Markup } = require('telegraf');
 const axios = require('axios');
 const xlsx = require('xlsx');
 const fs = require('fs');
@@ -16,8 +15,6 @@ function createButtons(commandToBot) {
 			callback_data: `${row}`
 		}];
 	});
-
-	//return resButton.map(subArray => subArray[0]);
 }
 
 bot.onText(/\/start/, (msg) => {
@@ -54,14 +51,12 @@ bot.onText(/\/getdata/, async (msg) => {
 				});
 
 			if (!ignoreIndex.includes(index)) {
-				//message += `Поставщик: ${rowData[0]}\n`;
 				bot.sendMessage(chatId, 'Поставщик: ', {
 					reply_markup: {
 						inline_keyboard: createButtons([rowData[0]])
 					}
 				});
 				bot.on('callback_query', async (callbackQuery) => {
-					//const callMsg = callbackQuery.message;
 					const callData = callbackQuery.data;
 					console.log(callData);
 					bot.sendMessage(chatId, `Вы выбрали: ${callData}`);
