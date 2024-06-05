@@ -16,10 +16,8 @@ const deleteChat = require('./dist/deleteChat');
 
 bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
-	//bot.sendMessage(chatId, `${usersFile}`);
-	bot.onText('\/start/', (msg) => {
-		bot.sendMessage(chatId, `Файл: ${usersFile}`);
-	})
+	bot.sendMessage(chatId, 'Test');
+	bot.sendMessage(chatId, `Файл: ${usersFile}`);
 	//const usedId = msg.from.id;
 	/*if (msg.text.toLowerCase() === '/start') {
 		hello(bot, msg, chatId, usersFile);
