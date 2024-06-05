@@ -2,26 +2,27 @@ const TelegramBot = require('node-telegram-bot-api');
 const fs = require('fs');
 const path = require('path');
 const users = require('./db/users.json');
-//const axios = require('axios');
+const axios = require('axios');
 //const xlsx = require('xlsx');
 //const { callbackQuery } = require('telegraf/filters');
 
 const token = process.env.token;
 const bot = new TelegramBot(token, { polling: true });
-const usersFile = JSON.parse(users);
-//const usersFile = path.join(__dirname, 'users.json');
+//const usersFile = JSON.parse(users);
+const usersFile = path.join(__dirname, 'users.json');
 
 const hello = require('./dist/hello');
 const deleteChat = require('./dist/deleteChat');
 
 bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
+	bot.sendMessage(chatId, `${usersFile}`);
 	//const usedId = msg.from.id;
-	if (msg.text.toLowerCase() === '/start') {
+	/*if (msg.text.toLowerCase() === '/start') {
 		hello(bot, msg, chatId, usersFile);
 	} else if (msg.new_chat_members.status === 'kicken' || msg.new_chat_members.status === 'left') {
 		deleteChat(bot, msg, chatId, usersFile);
-	}
+	}*/
 })
 
 /*function createButtons(commandToBot) {
