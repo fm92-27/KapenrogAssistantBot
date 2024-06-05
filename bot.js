@@ -1,13 +1,13 @@
 const TelegramBot = require('node-telegram-bot-api');
-//const fs = require('fs');
+const fs = require('fs');
 //const path = require('path');
-const usersFile = require('./db/users.json');
 //const axios = require('axios');
 //const xlsx = require('xlsx');
 //const { callbackQuery } = require('telegraf/filters');
 
 const token = process.env.token;
 const bot = new TelegramBot(token, { polling: true });
+const usersFile = fs.readFileSync('./db/users.json');
 const users = JSON.parse(usersFile);
 //const usersFile = path.join(__dirname, 'users.json');
 
@@ -21,7 +21,8 @@ bot.on('message', (msg) => {
 	} else {
 		hello(bot, msg, chatId);
 		users.push(chatId);
-		usersFile = JSON.stringify(users, null, 2);
+		let dataFile = JSON.stringify(users, null, 2);
+		fs.writeFileSync('./db/users.json', dataFile);
 	}
 })
 
