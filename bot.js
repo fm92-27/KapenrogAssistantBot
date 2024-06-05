@@ -8,15 +8,18 @@ const users = require('./db/users.json');
 
 const token = process.env.token;
 const bot = new TelegramBot(token, { polling: true });
+const usersFile = JSON.parse(users);
 //const usersFile = path.join(__dirname, 'users.json');
 
 const hello = require('./dist/hello');
+const deleteChat = require('./dist/deleteChat');
 
 bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
 	//const usedId = msg.from.id;
 
-	hello(bot, msg, chatId, JSON.parse(users));
+	hello(bot, msg, chatId, usersFile);
+	deleteChat(bot, msg, chatId, usersFile);
 })
 
 /*function createButtons(commandToBot) {
