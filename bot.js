@@ -1,33 +1,22 @@
 const TelegramBot = require('node-telegram-bot-api');
 const fs = require('fs');
 const path = require('path');
+const users = require('./db/users.json');
 //const axios = require('axios');
 //const xlsx = require('xlsx');
 //const { callbackQuery } = require('telegraf/filters');
 
 const token = process.env.token;
 const bot = new TelegramBot(token, { polling: true });
-const usedInfoBufferFile = path.join(__dirname, 'usedInfoBuffer.json');
-const usedInfoBuffer = [];
-if (fs.existsSync(usedInfoBufferFile)) {
-	usedInfoBuffer = JSON.parse(fs.readFileSync(usedInfoBufferFile, 'utf8'));
-}
+//const usersFile = path.join(__dirname, 'users.json');
 
 const hello = require('./dist/hello');
 
 bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
-	const usedId = msg.from.id;
+	//const usedId = msg.from.id;
 
-	if (msg.text.toLowerCase() === '/start') {
-		if (usedInfoBuffer.includes(usedId)) {
-			bot.sendMessage(chatId, `${msg.from.first_name}, придумай что получше.`);
-		} else {
-			hello(bot, msg, chatId);
-			usedInfoBuffer.push(usedId);
-			fs.writeFileSync(usedInfoBufferFile, JSON.stringify(usedInfoBuffer), 'utf8');
-		}
-	}
+	hello(bot, msg, chatId, JSON.parse(users));
 })
 
 /*function createButtons(commandToBot) {
