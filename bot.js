@@ -11,19 +11,12 @@ const bot = new TelegramBot(token, { polling: true });
 //const usersFile = JSON.parse(users);
 //const usersFile = path.join(__dirname, 'users.json');
 
-//const hello = require('./dist/hello');
+const hello = require('./dist/hello');
 //const deleteChat = require('./dist/deleteChat');
 
 bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
-	bot.sendMessage(chatId, 'Test');
-	//bot.sendMessage(chatId, `Файл: ${usersFile}`);
-	//const usedId = msg.from.id;
-	/*if (msg.text.toLowerCase() === '/start') {
-		hello(bot, msg, chatId, usersFile);
-	} else if (msg.new_chat_members.status === 'kicken' || msg.new_chat_members.status === 'left') {
-		deleteChat(bot, msg, chatId, usersFile);
-	}*/
+	hello(bot, msg, chatId);
 })
 
 /*function createButtons(commandToBot) {
