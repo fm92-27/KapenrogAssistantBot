@@ -1,29 +1,49 @@
 const TelegramBot = require('node-telegram-bot-api');
+const mongoose = require('mongoose');
 const fs = require('fs');
 //const path = require('path');
 //const axios = require('axios');
 //const xlsx = require('xlsx');
 //const { callbackQuery } = require('telegraf/filters');
 
-const token = process.env.token;
-const bot = new TelegramBot(token, { polling: true });
-const usersFile = fs.readFileSync('./db/users.json');
-const users = JSON.parse(usersFile);
-//const usersFile = path.join(__dirname, 'users.json');
-
+const connectDB = require('./db');
 const hello = require('./dist/hello');
-//const deleteChat = require('./dist/deleteChat');
 
-bot.on('message', (msg) => {
+const token = process.env.token;
+const mongoURL = process.env.mongoURL;
+const bot = new TelegramBot(token, { polling: true });
+
+connectDB(mongoose, mongoURL);
+
+const userSchema = new mongoose.Schema({
+	userId: String,
+	firstName: String,
+	lastName: String,
+	username: String,
+	chatId: Number,
+	hasStarted: Boolean
+});
+
+const User = mongoose.model('User', userSchema);
+
+bot.on('message', async (msg) => {
 	const chatId = msg.chat.id;
-	if (chatId in users) {
-		bot.sendMessage(`${msg.from.first_name}, придумай что по лучше.`);
-	} else {
-		hello(bot, msg, chatId);
-		users.push(chatId);
-		let dataFile = JSON.stringify(users, null, 2);
-		fs.writeFileSync('./db/users.json', dataFile);
+	const userId = msg.from.id;
+
+	let user = await User.findOne({userId});
+
+	if(!user) {
+		user = new User({
+			userId,
+			firstMane: msg.from.first_name,
+			lastName: msg.from.last_name,
+			username: msg.from.username,
+			chatId,
+			hasStarted: false
+		});
+		await user.save();
 	}
+	msg.text.toLowerCase() ? '/start' :	hello(bot, msg, user);
 })
 
 /*function createButtons(commandToBot) {
