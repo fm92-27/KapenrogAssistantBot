@@ -6,8 +6,8 @@ const fs = require('fs');
 //const xlsx = require('xlsx');
 //const { callbackQuery } = require('telegraf/filters');
 
-const connectDB = require('./db');
-const hello = require('./dist/hello');
+const connectDB = require('./db.js');
+const hello = require('./dist/hello.js');
 
 const token = process.env.token;
 const mongoURL = process.env.mongoURL;
@@ -43,7 +43,7 @@ bot.on('message', async (msg) => {
 		});
 		await user.save();
 	}
-	msg.text.toLowerCase() ? '/start' :	hello(bot, msg, user);
+	msg.text.toLowerCase() ? '/start' :	await hello(bot, msg, user);
 })
 
 /*function createButtons(commandToBot) {
