@@ -1,4 +1,6 @@
-const connectDB = async (mongoose, mongoURL) => {
+const { mongoose, mongoURL } = require('./dependencies.js');
+
+const connectDB = async () => {
     try {
         await mongoose.connect(mongoURL, {
             useNewUrlParser: true,
