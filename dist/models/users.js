@@ -1,5 +1,4 @@
-//const { mongoose } = require('../../dependencies.js');
-const mongoose = require('mongoose');
+const { mongoose } = require('../../dependencies.js');
 
 const userSchema = new mongoose.Schema({
     userId: { type: String, required: true, unique: true },
