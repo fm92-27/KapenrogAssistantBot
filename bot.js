@@ -1,4 +1,7 @@
-const { TelegramBot, mongoose, token, mongoURL, connectDB, User, hello } = require('./dependencies.js');
+const { TelegramBot, mongoose, token, mongoURL } = require('./dependencies.js');
+const connectDB = require('./db.js');
+const User = require('./dist/models/users.js');
+const hello = require('./dist/hello.js');
 //const fs = require('fs');
 //const path = require('path');
 //const axios = require('axios');

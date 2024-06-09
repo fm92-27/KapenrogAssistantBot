@@ -1,4 +1,4 @@
-const { User } = require('../dependencies.js');
+const User = require('./models/users.js');
 
 const handleStartCommand = async (bot, msg) => {
 	const chatId = msg.chat.id;
