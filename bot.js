@@ -10,8 +10,10 @@ const bot = new TelegramBot(token, { polling: true });
 connectDB();
 
 bot.on('message', async (msg) => {
-	msg.text.toLowerCase() ? '/start' :	await hello(bot, msg);
-})
+	bot.onText(/\/start/, async (msg) => {
+		await hello(bot, msg);
+	});
+});
 
 /*function createButtons(commandToBot) {
 	return resButton = commandToBot.map((row, index) => {
