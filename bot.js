@@ -11,10 +11,11 @@ connectDB();
 
 bot.on('message', async (msg) => {
 	bot.sendMessage(User.chatId, 'Message job');
-	bot.onText(/\/start/, async (msg) => {
+	msg.text.toLowerCase() ? '/start' : await hello(bot, msg);
+	/*bot.onText(/\/start/, async (msg) => {
 		bot.sendMessage(User.chatId, 'Start job');
 		await hello(bot, msg);
-	});
+	});*/
 });
 
 /*function createButtons(commandToBot) {
