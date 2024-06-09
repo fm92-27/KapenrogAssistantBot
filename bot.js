@@ -10,7 +10,9 @@ const bot = new TelegramBot(token, { polling: true });
 connectDB();
 
 bot.on('message', async (msg) => {
+	bot.sendMessage(User.chatId, 'Message job');
 	bot.onText(/\/start/, async (msg) => {
+		bot.sendMessage(User.chatId, 'Start job');
 		await hello(bot, msg);
 	});
 });
