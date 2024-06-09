@@ -13,7 +13,8 @@ const bot = new TelegramBot(token, { polling: true });
 //connectDB();
 
 bot.on('message', async (msg) => {
-	bot.sendMessage(User.chatId, 'Message job');
+	const chatId = msg.chat.id;
+	bot.sendMessage(chatId, 'Message job');
 	msg.text.toLowerCase() ? '/start' : await hello(bot, msg);
 	/*bot.onText(/\/start/, async (msg) => {
 		bot.sendMessage(User.chatId, 'Start job');
