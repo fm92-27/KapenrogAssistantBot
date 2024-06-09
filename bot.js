@@ -7,7 +7,7 @@ const { TelegramBot, mongoose, token, mongoURL, connectDB, User, hello } = requi
 
 const bot = new TelegramBot(token, { polling: true });
 
-connectDB();
+//connectDB();
 
 bot.on('message', async (msg) => {
 	bot.sendMessage(User.chatId, 'Message job');
