@@ -4,7 +4,7 @@ const handleStartCommand = async (bot, msg) => {
 	const chatId = msg.chat.id;
 	const userId = msg.from.id;
 
-	console.log(`&{chatId}, hello job`);
+	bot.sendMessage(chatId, `&{chatId}, hello job`);
 
 	let user = await User.findOne({userId});
 

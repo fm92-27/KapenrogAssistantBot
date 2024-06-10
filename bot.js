@@ -15,8 +15,8 @@ const bot = new TelegramBot(token, { polling: true });
 bot.on('message', async (msg) => {
 	const chatId = msg.chat.id;
 	bot.sendMessage(chatId, 'Message job.');
-	let user = User.create({ chatId });
-	bot.sendMessage(chatId, `${user}`);
+	//let user = User.create({ chatId });
+	//bot.sendMessage(chatId, `${user}`);
 	//User.create({ chatId });
 	msg.text.toLowerCase() ? '/start' : await hello(bot, msg);
 	/*bot.onText(/\/start/, async (msg) => {
