@@ -1,6 +1,6 @@
 const { TelegramBot, token } = require('./dependencies.js');
 const connectDB = require('./db.js');
-const user = require('./dist/models/users.js');
+const User = require('./dist/models/users.js');
 const hello = require('./dist/hello.js');
 //const fs = require('fs');
 //const path = require('path');
@@ -14,8 +14,9 @@ const bot = new TelegramBot(token, { polling: true });
 
 bot.on('message', async (msg) => {
 	const chatId = msg.chat.id;
-	bot.sendMessage(chatId, `Message job.\nchatId: ${chatId}.`);
-	//user.create({ chatId });
+	bot.sendMessage(chatId, 'Message job.');
+	bot.sendMessage(chatId, `${User}`);
+	//User.create({ chatId });
 	msg.text.toLowerCase() ? '/start' : await hello(bot, msg);
 	/*bot.onText(/\/start/, async (msg) => {
 		bot.sendMessage(User.chatId, 'Start job');
