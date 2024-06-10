@@ -1,6 +1,7 @@
 const { mongoose } = require('../../dependencies.js');
+const { Schema } = mongoose;
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
     userId: { type: String, required: true, unique: true },
     firstName: String,
     lastName: String,
@@ -9,4 +10,5 @@ const userSchema = new mongoose.Schema({
     hasStarted: { type: Boolean, default: false }
 });
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+module.exports = { User };
