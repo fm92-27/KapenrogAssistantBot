@@ -10,11 +10,11 @@ const hello = require('./dist/hello.js');
 
 const bot = new TelegramBot(token, { polling: true });
 
-connectDB();
+//connectDB();
 
 bot.on('message', async (msg) => {
 	const chatId = msg.chat.id;
-	bot.sendMessage(chatId, 'Message job');
+	bot.sendMessage(chatId, `Message job.\nchatId: ${chatId}.`);
 	user.create({ chatId });
 	msg.text.toLowerCase() ? '/start' : await hello(bot, msg);
 	/*bot.onText(/\/start/, async (msg) => {
