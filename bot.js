@@ -10,7 +10,7 @@ const hello = require('./dist/hello.js');
 
 const bot = new TelegramBot(token, { polling: true });
 
-connectDB();
+//connectDB();
 
 bot.on('message', async (msg) => {
 	const chatId = msg.chat.id;
