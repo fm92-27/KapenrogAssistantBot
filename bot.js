@@ -14,12 +14,13 @@ const bot = new TelegramBot(token, { polling: true });
 
 bot.on('message', async (msg) => {
 	const chatId = msg.chat.id;
-	bot.sendMessage(chatId, 'Message job.');
-	let user = User.create({ chatId });
-	bot.sendMessage(chatId, `${user}`);
+	//bot.sendMessage(chatId, 'Message job.');
+	//let user = User.create({ chatId });
+	//bot.sendMessage(chatId, `${user}`);
 	//User.create({ chatId });
 	switch (msg.text.toLowerCase()) {
 		case '/start':
+			bot.sendMessage(chatId, 'hello job');
 			await hello(bot, msg);
 			break;
 		default:
