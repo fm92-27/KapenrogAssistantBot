@@ -18,14 +18,15 @@ bot.on('message', async (msg) => {
 	//let user = User.create({ chatId });
 	//bot.sendMessage(chatId, `${user}`);
 	//User.create({ chatId });
-	switch (msg.text.toLowerCase()) {
+	/*switch (msg.text.toLowerCase()) {
 		case '/start':
 			bot.sendMessage(chatId, 'hello job');
 			await hello(bot, msg);
 			break;
 		default:
 			bot.sendMessage(chatId, msg.text.toLowerCase());
-	} 
+	}*/
+	bot.sendMessage(chatId, 'Job');
 	/*bot.onText(/\/start/, async (msg) => {
 		bot.sendMessage(User.chatId, 'Start job');
 		await hello(bot, msg);
