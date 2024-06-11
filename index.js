@@ -14,6 +14,7 @@ app.post(`/bot${token}`, (req, res) => {
 
 app.get('/', (req, res) => {
   res.send('Bot is running');
+  res.send(req);
 });
 
 module.exports = app;
