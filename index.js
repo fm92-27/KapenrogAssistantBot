@@ -7,7 +7,7 @@ const bot = new TelegramBot(TOKEN);
 
 bot.setWebHook(`https://${process.env.VERCEL_URL}/bot${TOKEN}`);
 
-app.post(`/bot${token}`, (req, res) => {
+app.post(`/bot${TOKEN}`, (req, res) => {
   bot.processUpdate(req.body);
   res.sendStatus(200);
 });
