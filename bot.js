@@ -1,36 +1,26 @@
-const { TelegramBot, token } = require('./dependencies.js');
-const connectDB = require('./db.js');
-const User = require('./dist/models/users.js');
+const { TelegramBot, TOKEN } = require('./dependencies.js');
 const hello = require('./dist/hello.js');
+const TelegramBot = require('node-telegram-bot-api');
 //const fs = require('fs');
 //const path = require('path');
 //const axios = require('axios');
 //const xlsx = require('xlsx');
 //const { callbackQuery } = require('telegraf/filters');
 
-const bot = new TelegramBot(token, { polling: true });
+const TOKEN = '6417160738:AAHXA2LCdObDBtVwR65X0VQtOsIEgf8-BoM';
 
-//connectDB();
+const bot = new TelegramBot(TOKEN, { polling: true });
 
 bot.on('message', async (msg) => {
 	const chatId = msg.chat.id;
-	//bot.sendMessage(chatId, 'Message job.');
-	//let user = User.create({ chatId });
-	//bot.sendMessage(chatId, `${user}`);
-	//User.create({ chatId });
-	/*switch (msg.text.toLowerCase()) {
+	bot.sendMessage(chatId, `${chatId}. Message job.`);
+	switch (msg.text.toLowerCase()) {
 		case '/start':
-			bot.sendMessage(chatId, 'hello job');
 			await hello(bot, msg);
 			break;
 		default:
 			bot.sendMessage(chatId, msg.text.toLowerCase());
-	}*/
-	bot.sendMessage(chatId, 'Job');
-	/*bot.onText(/\/start/, async (msg) => {
-		bot.sendMessage(User.chatId, 'Start job');
-		await hello(bot, msg);
-	});*/
+	}
 });
 
 /*function createButtons(commandToBot) {

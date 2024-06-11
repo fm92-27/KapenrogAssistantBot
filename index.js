@@ -1,11 +1,11 @@
-const { express, bodyParser, TelegramBot, token } = require('./dependencies.js');
+const { express, bodyParser, TelegramBot, TOKEN } = require('./dependencies.js');
 
 const app = express();
 app.use(bodyParser.json());
 
-const bot = new TelegramBot(token);
+const bot = new TelegramBot(TOKEN);
 
-bot.setWebHook(`https://${process.env.VERCEL_URL}/bot${token}`);
+bot.setWebHook(`https://${process.env.VERCEL_URL}/bot${TOKEN}`);
 
 app.post(`/bot${token}`, (req, res) => {
   bot.processUpdate(req.body);
