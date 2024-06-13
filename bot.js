@@ -7,8 +7,6 @@ const TelegramBot = require('node-telegram-bot-api');
 //const xlsx = require('xlsx');
 //const { callbackQuery } = require('telegraf/filters');
 
-//const TOKEN = '6417160738:AAHXA2LCdObDBtVwR65X0VQtOsIEgf8-BoM';
-
 const bot = new TelegramBot(TOKEN, { polling: true });
 
 bot.on('message', async (msg) => {

@@ -1,4 +1,4 @@
-const handleStartCommand = async (bot, msg) => {
+const handleStartCommand = (bot, msg) => {
 	const chatId = msg.chat.id;
 	const userId = msg.from.id;
 
