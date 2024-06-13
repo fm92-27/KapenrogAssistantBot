@@ -14,7 +14,7 @@ bot.on('message', async (msg) => {
 	bot.sendMessage(chatId, `${chatId}. Message job.`);
 	switch (msg.text.toLowerCase()) {
 		case '/start':
-			await hello(bot, msg);
+			hello(bot, msg);
 			break;
 		default:
 			bot.sendMessage(chatId, msg.text.toLowerCase());
