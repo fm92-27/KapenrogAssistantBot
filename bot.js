@@ -1,6 +1,7 @@
-const { TelegramBot, TOKEN } = require('./dependencies.js');
+//const { TelegramBot, TOKEN } = require('./dependencies.js');
 const hello = require('./dist/hello.js');
-//const TelegramBot = require('node-telegram-bot-api');
+const TelegramBot = require('node-telegram-bot-api');
+const TOKEN = process.env.TOKEN;
 //const fs = require('fs');
 //const path = require('path');
 //const axios = require('axios');
