@@ -16,4 +16,4 @@ app.get('/', (req, res) => {
   res.send('Bot is running');
 });
 
-module.exports = { app, bot };
+module.exports = app;
