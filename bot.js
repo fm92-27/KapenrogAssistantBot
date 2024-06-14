@@ -1,15 +1,15 @@
 const { TelegramBot, TOKEN } = require('./dependencies.js');
 const hello = require('./dist/hello.js');
-const TelegramBot = require('node-telegram-bot-api');
+//const TelegramBot = require('node-telegram-bot-api');
 //const fs = require('fs');
 //const path = require('path');
 //const axios = require('axios');
 //const xlsx = require('xlsx');
 //const { callbackQuery } = require('telegraf/filters');
 
-const bot = new TelegramBot(TOKEN, { polling: true });
+//const bot = new TelegramBot(TOKEN, { polling: true });
 
-bot.onText(/\/message/, (msg) => {
+bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
 	bot.sendMessage(chatId, `${chatId}. Message job.`);
 	switch (msg.text.toLowerCase()) {
