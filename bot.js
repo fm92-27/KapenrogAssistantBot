@@ -7,7 +7,7 @@ const hello = require('./dist/hello.js');
 //const xlsx = require('xlsx');
 //const { callbackQuery } = require('telegraf/filters');
 
-//const bot = new TelegramBot(TOKEN, { polling: true });
+const bot = new TelegramBot(TOKEN, { polling: true });
 
 bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
