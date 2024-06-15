@@ -1,7 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 const hello = require('./dist/hello.js');
 const axios = require('axios');
-const fs = require('fs');
+const fs = require('fs').promises;
 
 const TOKEN = process.env.TOKEN;
 const DATAUSERS = process.env.DATAUSERS;
