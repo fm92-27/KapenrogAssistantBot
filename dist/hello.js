@@ -14,4 +14,4 @@ const handleStartCommand = (bot, msg) => {
 	};
 };
 
-module.exports = { handleStartCommand };
+module.exports = handleStartCommand;
