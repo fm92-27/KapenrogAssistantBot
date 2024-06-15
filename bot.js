@@ -1,21 +1,44 @@
 const TelegramBot = require('node-telegram-bot-api');
 const hello = require('./dist/hello.js');
+const axios = require('axios');
+const fs = require('fs');
 
 const TOKEN = process.env.TOKEN;
-//const fs = require('fs');
+const DATAUSERS = process.env.DATAUSERS;
 //const path = require('path');
-//const axios = require('axios');
 //const xlsx = require('xlsx');
 //const { callbackQuery } = require('telegraf/filters');
 
 const bot = new TelegramBot(TOKEN, { polling: true });
 
+async function writeReadCheckJson(DATAUSERS, value) {
+	let checkResult = true;
+
+	try {
+		const res = await axios.get(DATAUSERS);
+		const data = res.data;
+
+		if (Object.values(data).includes(value)) {
+			checkResult = false;
+		} else {
+			const key = `key${Object.keys(data).length + 1}`;
+			data[key] = value;
+			await fs.writeFile(DATAUSERS, JSON.stringify(data, null, 2));
+		}
+	} catch (err) {
+		console.error('Ошибка при работе с JSON файлом:', err);
+	}
+	return checkResult;
+};
+
 bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
-	//bot.sendMessage(chatId, `${chatId}. Message job.`);
+
+	const isUser = writeReadCheckJson(DATAUSERS, chatId);
+
 	switch (msg.text.toLowerCase()) {
 		case '/start':
-			hello(chatId, bot, msg);
+			hello(chatId, bot, msg, isUser);
 			break;
 		default:
 			bot.sendMessage(chatId, msg.text.toLowerCase());

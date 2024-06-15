@@ -1,6 +1,6 @@
-var isUser = true;
+//var isUser = true;
 
-const handleStartCommand = (chatId, bot, msg) => {
+const handleStartCommand = (chatId, bot, msg, isUser) => {
 	//const chatId = msg.chat.id;
 	//const userId = msg.from.id;
 
