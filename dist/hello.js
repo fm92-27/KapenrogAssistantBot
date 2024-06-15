@@ -1,4 +1,4 @@
-const isUser = true;
+var isUser = true;
 
 const handleStartCommand = (bot, msg) => {
 	const chatId = msg.chat.id;
@@ -14,4 +14,4 @@ const handleStartCommand = (bot, msg) => {
 	};
 };
 
-module.exports = handleStartCommand;
+module.exports = { handleStartCommand };
