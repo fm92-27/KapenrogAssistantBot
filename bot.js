@@ -10,12 +10,12 @@ const TOKEN = process.env.TOKEN;
 
 const bot = new TelegramBot(TOKEN, { polling: true });
 
-bot.on('message', (msg) => {
+bot.on('message', async (msg) => {
 	const chatId = msg.chat.id;
 	//bot.sendMessage(chatId, `${chatId}. Message job.`);
 	switch (msg.text.toLowerCase()) {
 		case '/start':
-			hello(bot, msg);
+			await hello(bot, msg);
 			break;
 		default:
 			bot.sendMessage(chatId, msg.text.toLowerCase());
@@ -29,9 +29,9 @@ bot.on('message', (msg) => {
 			callback_data: `${row}`
 		}];
 	});
-}
+}*/
 
-bot.onText(/\/getdata/, async (msg) => {
+/*bot.onText(/\/getdata/, async (msg) => {
 	const chatId = msg.chat.id;
 	const fileUrl = 'https://docs.google.com/spreadsheets/d/1wyBwAm3ZQJOFZd5JNXb0PeGDMWznMT2Y/edit?usp=sharing&ouid=104967868883938205514&rtpof=true&sd=true';
 
