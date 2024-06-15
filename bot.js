@@ -10,12 +10,12 @@ const TOKEN = process.env.TOKEN;
 
 const bot = new TelegramBot(TOKEN, { polling: true });
 
-bot.on('message', async (msg) => {
-	//const chatId = msg.chat.id;
+bot.on('message', (msg) => {
+	const chatId = msg.chat.id;
 	//bot.sendMessage(chatId, `${chatId}. Message job.`);
 	switch (msg.text.toLowerCase()) {
 		case '/start':
-			await hello(bot, msg);
+			hello(chatId, bot, msg);
 			break;
 		default:
 			bot.sendMessage(chatId, msg.text.toLowerCase());

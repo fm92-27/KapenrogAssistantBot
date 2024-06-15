@@ -1,8 +1,8 @@
 var isUser = true;
 
-const handleStartCommand = (bot, msg) => {
-	const chatId = msg.chat.id;
-	const userId = msg.from.id;
+const handleStartCommand = (chatId, bot, msg) => {
+	//const chatId = msg.chat.id;
+	//const userId = msg.from.id;
 
 	//bot.sendMessage(chatId, `${chatId}, hello job v2`);
 
