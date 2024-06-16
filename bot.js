@@ -2,14 +2,20 @@ const TelegramBot = require('node-telegram-bot-api');
 const hello = require('./dist/hello.js');
 const axios = require('axios');
 const fs = require('fs').promises;
+const mongoose = require('mongoose');
 
 const TOKEN = process.env.TOKEN;
 const DATAUSERS = process.env.DATAUSERS;
+const mongoURL = process.env.mongoURL;
 //const path = require('path');
 //const xlsx = require('xlsx');
 //const { callbackQuery } = require('telegraf/filters');
 
 const bot = new TelegramBot(TOKEN, { polling: true });
+mongoose.connect(mongoURL, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+});
 
 async function writeReadCheckJson(DATAUSERS, value) {
 	let checkResult = true;
