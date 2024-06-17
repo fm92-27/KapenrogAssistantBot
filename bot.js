@@ -1,23 +1,24 @@
 const TelegramBot = require('node-telegram-bot-api');
 const hello = require('./dist/hello.js');
-const axios = require('axios');
-const fs = require('fs').promises;
-const mongoose = require('mongoose');
+const users = require('./users.js');
+//const axios = require('axios');
+//const fs = require('fs').promises;
+//const mongoose = require('mongoose');
 
 const TOKEN = process.env.TOKEN;
-const DATAUSERS = process.env.DATAUSERS;
-const mongoURL = process.env.mongoURL;
+//const DATAUSERS = process.env.DATAUSERS;
+//const mongoURL = process.env.mongoURL;
 //const path = require('path');
 //const xlsx = require('xlsx');
 //const { callbackQuery } = require('telegraf/filters');
 
 const bot = new TelegramBot(TOKEN, { polling: true });
-mongoose.connect(mongoURL, {
+/*mongoose.connect(mongoURL, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
-});
+});*/
 
-async function writeReadCheckJson(DATAUSERS, value) {
+/*async function writeReadCheckJson(DATAUSERS, value) {
 	let checkResult = true;
 
 	try {
@@ -35,16 +36,22 @@ async function writeReadCheckJson(DATAUSERS, value) {
 		console.error('Ошибка при работе с JSON файлом:', err);
 	}
 	return checkResult;
-};
+};*/
 
 bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
-
-	const isUser = writeReadCheckJson(DATAUSERS, chatId);
-
+	const userData = users.getUsers();
+	//const isUser = writeReadCheckJson(DATAUSERS, chatId);
 	switch (msg.text.toLowerCase()) {
 		case '/start':
-			hello(chatId, bot, msg, isUser);
+			for (i in userData.chatID) {
+				if (i === chatId) {
+					hello(chatId, bot, msg, true);
+				} else {
+					hello(chatId, bot, msg, false);
+					users.createUser(chatId);
+				}
+			};
 			break;
 		default:
 			bot.sendMessage(chatId, msg.text.toLowerCase());
