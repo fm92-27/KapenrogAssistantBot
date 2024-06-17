@@ -1,8 +1,8 @@
 const contentful = require('contentful');
 
 const user = contentful.createClient({
-    space: CONTENTFUL_SPACE_ID,
-    accessToken: CONTENTFUL_ACCESS_TOKEN
+    space: process.env.SpaceID,
+    accessToken: process.env.DeliveryToken
 });
 
 const getUsers = async () => {
