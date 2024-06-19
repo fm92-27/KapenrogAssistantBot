@@ -44,8 +44,9 @@ bot.on('message', (msg) => {
 	//const isUser = writeReadCheckJson(DATAUSERS, chatId);
 	switch (msg.text.toLowerCase()) {
 		case '/start':
-			bot.sendMessage(chatId, `${typeof(userData)}`);
-			for (i in userData.chatID) {
+			bot.sendMessage(chatId, "Job");
+			//bot.sendMessage(chatId, `${userData}`);
+			for (i in userData) {
 				bot.sendMessage(chatId, `${i}`);
 				if (i === chatId) {
 					hello(chatId, bot, msg, true);
