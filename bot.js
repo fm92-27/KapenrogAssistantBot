@@ -45,9 +45,9 @@ bot.on('message', (msg) => {
 	switch (msg.text.toLowerCase()) {
 		case '/start':
 			//bot.sendMessage(chatId, "Job");
-			bot.sendMessage(chatId, `${userData.fields}`);
-			bot.sendMessage(chatId, `${JSON.parse(userData)}`);
-			for (i in userData) {
+			bot.sendMessage(chatId, `"userData.fields.chatID: "${userData.fields.chatID}`);
+			bot.sendMessage(chatId, `"userData: "${userData}`);
+			for (let i of userData) {
 				bot.sendMessage(chatId, `${i}`);
 				if (i === chatId) {
 					hello(chatId, bot, msg, true);
