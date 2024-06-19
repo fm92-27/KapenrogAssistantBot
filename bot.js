@@ -38,14 +38,20 @@ const bot = new TelegramBot(TOKEN, { polling: true });
 	return checkResult;
 };*/
 
+/*function test (i) {
+	bot.sendMessage(i, "test");
+	setInterval(() => test(i), 2000);
+};*/
+
 bot.on('message', (msg) => {
 	const chatId = msg.chat.id;
 	const userData = users.getUsers();
+	users.createUser(chatId);
 	//const isUser = writeReadCheckJson(DATAUSERS, chatId);
 	switch (msg.text.toLowerCase()) {
 		case '/start':
 			bot.sendMessage(chatId, "Job");
-			bot.sendMessage(chatId, `"userData: "${userData.then()}`);
+			//bot.sendMessage(chatId, `"userData: "${userData.then()}`);
 			for (let i of userData) {
 				bot.sendMessage(chatId, `${i}`);
 				if (i === chatId) {
