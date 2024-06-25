@@ -12,7 +12,8 @@ const TOKEN = process.env.TOKEN;
 //const xlsx = require('xlsx');
 //const { callbackQuery } = require('telegraf/filters');
 
-const bot = new TelegramBot(TOKEN, { polling: true });
+//const bot = new TelegramBot(TOKEN, { polling: true });
+
 /*mongoose.connect(mongoURL, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
